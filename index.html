@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f7f3">
+  <meta name="description" content="Учебная симуляция аномалоскопа для ориентировочной оценки восприятия красно-зелёных оттенков.">
+  <title>Цветомер — проба с аномалоскопом</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="Цветомер — главная">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>цветомер</span>
+      </a>
+      <span class="header-note"><span class="status-dot"></span> Учебный тест</span>
+    </header>
+
+    <main>
+      <section class="screen landing active" id="home" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> Исследуйте цветовое восприятие</div>
+          <h1 id="hero-title">Почувствуйте,<br>как <span>смешивается</span> цвет.</h1>
+          <p class="intro">Интерактивная проба по принципу аномалоскопа Релея: попробуйте подобрать смесь красного и зелёного к жёлтому полю.</p>
+          <button class="primary-button" id="begin-button">Начать пробу <span aria-hidden="true">↗</span></button>
+          <div class="time-note"><span aria-hidden="true">◷</span> Около 1–2 минут <span class="note-divider">·</span> Без регистрации</div>
+        </div>
+        <div class="hero-art" aria-label="Иллюстрация двух цветовых полей">
+          <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+          <div class="art-card">
+            <div class="art-label"><span>ПОЛЕ 01</span><span>ОБРАЗЕЦ</span></div>
+            <div class="art-disc yellow-disc"></div>
+            <div class="art-label bottom-label"><span>ПОЛЕ 02</span><span>ВАША СМЕСЬ</span></div>
+            <div class="art-disc mix-disc"><span></span></div>
+          </div>
+          <div class="art-tag tag-top"><span class="tag-dot yellow-dot"></span> Жёлтый образец</div>
+          <div class="art-tag tag-bottom"><span class="tag-dot blend-dot"></span> Красный + зелёный</div>
+          <div class="art-sparkle">✳</div>
+        </div>
+        <div class="landing-footer"><span>01 / 04</span><span>Сначала — пара простых условий</span><span class="footer-line"></span></div>
+      </section>
+
+      <section class="screen setup" id="setup" aria-labelledby="setup-title" hidden>
+        <div class="section-heading"><div class="eyebrow"><span class="eyebrow-line"></span> Перед началом</div><h2 id="setup-title">Подготовьте экран</h2><p>Чем стабильнее условия, тем осмысленнее будут ваши наблюдения.</p></div>
+        <div class="setup-grid">
+          <article class="setup-card"><span class="step-number">01</span><div class="setup-icon sun-icon">☼</div><h3>Стабильная яркость</h3><p>Отключите автояркость и установите комфортный уровень. Не меняйте его во время пробы.</p></article>
+          <article class="setup-card"><span class="step-number">02</span><div class="setup-icon screen-icon">◉</div><h3>Без фильтров</h3><p>Отключите ночной режим, защиту зрения, цветовые фильтры и энергосбережение.</p></article>
+          <article class="setup-card"><span class="step-number">03</span><div class="setup-icon eye-icon">◌</div><h3>Ровное освещение</h3><p>Уберите блики и яркие цветные объекты вокруг. Не тестируйтесь в полной темноте.</p></article>
+        </div>
+        <div class="checklist" id="setup-checklist" aria-label="Проверка условий перед тестом">
+          <label><input class="setup-check" type="checkbox"><span class="checkmark" aria-hidden="true"></span><span>Автояркость и цветовые фильтры выключены</span></label>
+          <label><input class="setup-check" type="checkbox"><span class="checkmark" aria-hidden="true"></span><span>Нет бликов; освещение ровное, вокруг нейтральные цвета</span></label>
+          <label><input class="setup-check" type="checkbox"><span class="checkmark" aria-hidden="true"></span><span>Я буду смотреть на экран прямо и не менять его настройки</span></label>
+        </div>
+        <p class="checklist-status" id="checklist-status" aria-live="polite">Отмечено: 0 из 3</p>
+        <div class="notice"><span class="notice-icon">i</span><p><strong>Про калибровку:</strong> браузер не может настроить или проверить D65 и гамму 2.2. Для этого нужен измерительный прибор и подходящий дисплей. На телефоне тест остаётся субъективной пробой: цвета RGB на экране не являются чистыми длинами волн аномалоскопа.</p></div>
+        <div class="actions-row"><button class="text-button back-button" data-back="home">← Назад</button><button class="primary-button" id="ready-button">Начать 6 проб <span aria-hidden="true">→</span></button></div>
+      </section>
+
+      <section class="screen test-screen" id="test" aria-labelledby="test-title" hidden>
+        <div class="test-topline"><button class="icon-button" id="exit-test" aria-label="Выйти из теста">×</button><div class="progress-wrap"><div class="progress-meta"><span id="trial-label">ПОПЫТКА 1 ИЗ 6</span></div><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div></div><span class="test-top-spacer"></span></div>
+        <div class="test-intro"><div class="eyebrow"><span class="eyebrow-line"></span> Подбор совпадения</div><h2 id="test-title">Найдите наиболее<br><span>похожий</span> оттенок.</h2><p>Шесть коротких попыток. Каждая начинается с вашего прошлого выбора.</p></div>
+        <div class="phase-instruction" id="phase-instruction"><span class="phase-step" id="phase-step">ПОПЫТКА 1 ИЗ 6</span><p id="phase-copy">Стартовая смесь немного отличается от образца. Подгоните нижнее поле к верхнему; если идеальное совпадение не получается, сохраните самый близкий вариант.</p></div>
+        <div class="comparison" aria-label="Сравните два цветовых поля">
+          <div class="field-wrap"><div class="field-caption"><span class="field-index">A</span><span>ОБРАЗЕЦ</span><span class="field-fixed">НЕ МЕНЯЕТСЯ</span></div><div class="color-field reference-field" id="reference-field" role="img" aria-label="Жёлтое поле-образец"></div></div>
+          <div class="field-wrap"><div class="field-caption"><span class="field-index">B</span><span>ВАША СМЕСЬ</span><span class="field-fixed adjustable-label">МЕНЯЕТСЯ</span></div><div class="color-field mixture-field" id="mixture-field" role="img" aria-label="Настраиваемая смесь красного и зелёного"></div></div>
+        </div>
+        <div class="adjust-panel">
+          <div class="adjust-heading"><div><span class="control-label">ТОНКАЯ ПОДСТРОЙКА ВОКРУГ ЖЁЛТОГО</span><strong>Красный <span class="muted-plus">+</span> зелёный</strong></div></div>
+          <div class="range-row"><span class="color-end green-end">Зелёный</span><input id="mix-range" type="range" min="30" max="70" value="50" aria-label="Доля красного цвета"><span class="color-end red-end">Красный</span></div>
+          <div class="fine-controls">
+            <button class="step-button" data-adjust="-1" aria-label="Уменьшить красный на один шаг">−</button>
+            <div class="step-copy"><strong>Точная подстройка</strong><span>Нажмите для шага · удерживайте для ускорения</span></div>
+            <button class="step-button" data-adjust="1" aria-label="Увеличить красный на один шаг">+</button>
+          </div>
+          <div class="control-divider"></div>
+          <div class="brightness-row"><div><span class="control-label">ЯРКОСТЬ СМЕСИ</span><span class="brightness-sub">Подгоните светлоту нижнего поля</span></div><div class="brightness-controls"><button class="mini-step" data-brightness="-" aria-label="Уменьшить яркость">−</button><input id="brightness-range" type="range" min="65" max="135" value="100" aria-label="Яркость нижнего поля"><button class="mini-step" data-brightness="+" aria-label="Увеличить яркость">+</button></div></div>
+        </div>
+        <div class="test-bottom"><p><span class="hint-icon">✳</span> Сохранить ответ можно после изменения доли красного хотя бы на один шаг.</p><button class="primary-button" id="next-button" disabled>Подстройте цвет, чтобы продолжить <span aria-hidden="true">→</span></button></div>
+      </section>
+
+      <section class="screen result-screen" id="result" aria-labelledby="result-title" hidden>
+        <div class="result-visual"><div class="result-rings ring-a"></div><div class="result-rings ring-b"></div><div class="result-medallion"><span>✳</span></div><div class="result-spark">✦</div></div>
+        <div class="result-content"><div class="eyebrow"><span class="eyebrow-line"></span> Проба завершена</div><h2 id="result-title">Вот что показали<br>ваши <span>попытки.</span></h2><p class="result-lead">Показана медиана шести ваших настроек. В следующих попытках сайт начинал с предыдущего выбора, чтобы было проще подгонять оттенок.</p>
+          <div class="result-card"><div class="result-card-top"><div><span class="control-label">ВАШИ ПОВТОРНЫЕ ВЫБОРЫ</span><h3 id="range-summary">—</h3></div><div class="result-badge" id="range-badge">6 попыток</div></div><div class="range-numbers"><div><span>Медианный выбор</span><strong id="lower-result">—</strong></div><div><span>Ответы были от</span><strong id="upper-result">—</strong></div><div><span>Разброс ответов</span><strong id="width-result">—</strong></div></div><div class="scale-track"><div class="scale-selection" id="scale-selection"></div><span class="scale-left">БОЛЬШЕ ЗЕЛЁНОГО</span><span class="scale-right">БОЛЬШЕ КРАСНОГО</span></div><p id="result-description"></p><p class="repeat-detail" id="repeat-detail"></p></div>
+          <div class="reading-guide"><h3>Как специалисты читают аномалоскоп?</h3><p>В настоящем тесте Рэлея человек подбирает смесь узкополосного красного и зелёного света к жёлтому образцу. Специалист учитывает <em>середину диапазона совпадений</em> и его <em>ширину</em>; сдвиг смеси к красному или зелёному может помочь различить протан- и дейтеран-тип, а ширина — оценить различимость оттенков. Но нужны известные спектры источников и контроль яркости.</p><p>Для масштаба: в одном исследовании 90 людей без выявленных нарушений средняя ширина диапазона на конкретном приборе составила 6,1 его деления. Это число <em>нельзя сравнивать</em> с процентами этого сайта: у каждого прибора своя шкала, а здесь отображаются обычные RGB-пиксели. Разброс ваших шести ответов — лишь повторяемость ваших выборов, не медицинский диапазон.</p><p class="source-links">Источники: <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0251903" target="_blank" rel="noreferrer">исследование 90 участников, PLOS ONE (2021)</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13105152/" target="_blank" rel="noreferrer">модель и тест аномалоскопа для iPhone (2025)</a> · <a href="https://opg.optica.org/josaa/abstract.cfm?uri=josaa-42-5-B214" target="_blank" rel="noreferrer">требования к спектрам источников, JOSA A (2025)</a>.</p></div>
+          <div class="disclaimer-card"><span class="notice-icon">i</span><p><strong>Следующий шаг:</strong> если результат важен для здоровья или работы, попросите офтальмолога/оптометриста провести тест цветового зрения; для точного определения красно-зелёного типа может применяться клинический аномалоскоп.</p></div>
+          <div class="result-actions"><button class="primary-button" id="restart-button">Пройти ещё раз <span aria-hidden="true">↻</span></button><button class="text-button" id="home-button">На главную</button></div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><span>ЦВЕТОМЕР <span class="footer-separator">/</span> ОБРАЗОВАТЕЛЬНЫЙ ПРОЕКТ</span><span>Не медицинская диагностика</span></footer>
+  </div>
+  <div class="modal-backdrop" id="exit-modal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="Закрыть">×</button><span class="modal-symbol">↗</span><h2 id="modal-title">Прервать пробу?</h2><p>Текущий результат не будет сохранён.</p><div class="modal-actions"><button class="text-button" id="continue-button">Продолжить</button><button class="primary-button danger-button" id="confirm-exit">Выйти</button></div></div></div>
+  <script src="app.js?v=5"></script>
+</body>
+</html>
